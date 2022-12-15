@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Vendor: edu.cmu.cs
+Implementation-Title: ark-tweet-nlp
+Implementation-Version: 0.3.2
+Implementation-Vendor-Id: edu.cmu.cs
+Specification-Vendor: edu.cmu.cs
+Specification-Title: ark-tweet-nlp
+Specification-Version: 0.3.2
+
