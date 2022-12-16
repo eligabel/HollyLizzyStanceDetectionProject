@@ -1,3 +1,4 @@
+
 import nltk
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
@@ -10,7 +11,7 @@ import re
 
 #import cleaned data for POS tagging
 print('import data')
-filepath = '~/SeminarInCL/Project/HollyLizzyStanceDetectionProject/stance/01_data/testcleaned.csv'
+filepath = '/home/eligabel/HollyLizzyStanceDetectionProject-main/HollyLizzyStanceDetectionProject-main/stance/01_data/traincleaned.csv'
 dat=pd.read_csv(filepath)
 print(dat.head(n=5))
 
@@ -23,25 +24,15 @@ listdat = list(dat['Tweet'])
 newlist = []
 #py_token = sent_tokenize (listdat)
 for i in listdat:
-	py_lword = nltk.word_tokenize (i)
-	py_tag = nltk.pos_tag (py_lword)
-	newlist.append(py_tag)
-
-
-joinedTags = []
-newNewList = []
-
-for list in newlist:
-	for tuple in list:
-		st = ''.join(map(str, tuple))
-		joinedTags.append(st)
-	newNewList.append(joinedTags)
+        py_lword = nltk.word_tokenize (i)
+        py_tag = nltk.pos_tag (py_lword)
+        st_tag = [''.join(t) for t in py_tag]
+        newlist.append(st_tag)
 
 
 #make new column in Data Frame for the POS tags
-dat['posTagsTuples'] = newlist
-dat['joinedPOSTags'] = newNewList
+dat['posTags'] = newlist
 
 
 print('exporting POS tagged file')
-dat.to_csv('~/SeminarInCL/Project/HollyLizzyStanceDetectionProject/stance/01_data/testcleanedPOS.csv', index=False)
+dat.to_csv('/home/eligabel/HollyLizzyStanceDetectionProject-main/HollyLizzyStanceDetectionProject-main/stance/01_data/traincleanedPOS.csv', index=False)
