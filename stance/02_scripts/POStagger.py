@@ -10,7 +10,7 @@ import re
 
 #import cleaned data for POS tagging
 print('import data')
-filepath = '~/SeminarInCL/Project/HollyLizzyStanceDetectionProject/stance/01_data/traincleaned.csv'
+filepath = '~/SeminarInCL/Project/HollyLizzyStanceDetectionProject/stance/01_data/testcleaned.csv'
 dat=pd.read_csv(filepath)
 print(dat.head(n=5))
 
@@ -27,8 +27,21 @@ for i in listdat:
 	py_tag = nltk.pos_tag (py_lword)
 	newlist.append(py_tag)
 
+
+joinedTags = []
+newNewList = []
+
+for list in newlist:
+	for tuple in list:
+		st = ''.join(map(str, tuple))
+		joinedTags.append(st)
+	newNewList.append(joinedTags)
+
+
 #make new column in Data Frame for the POS tags
-dat['posTags'] = newlist
+dat['posTagsTuples'] = newlist
+dat['joinedPOSTags'] = newNewList
+
 
 print('exporting POS tagged file')
-dat.to_csv('~/SeminarInCL/Project/HollyLizzyStanceDetectionProject/stance/01_data/traincleanedPOS.csv', index=False)
+dat.to_csv('~/SeminarInCL/Project/HollyLizzyStanceDetectionProject/stance/01_data/testcleanedPOS.csv', index=False)
